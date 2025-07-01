@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 
 using var context = new FootballLeagueDbContext();
 
-
 GetAllTeams();
 QuerySingleRecords();
 FilterMultipleRecords();
@@ -13,6 +12,65 @@ AggregateFunctions();
 GroupByItems();
 OrderByItems();
 SelectAndProjections();
+InsertARecord();
+InsertBulkRecords();
+UpdateRecord();
+DeleteRecord();
+
+async Task DeleteRecord()
+{
+    var coach = context.Coaches.First(q => q.Id == 4);
+
+    context.Remove(coach);
+
+    await context.SaveChangesAsync();
+}
+
+async Task UpdateRecord()
+{
+    var coach = context.Coaches.First(q => q.Id == 2);
+
+    coach.Name = "Rahul Dravid";
+
+    await context.SaveChangesAsync();
+}
+
+async Task InsertBulkRecords()
+{
+    var coachGary = new Coach()
+    {
+        Name = "Gary Kirsten",
+        CreatedDate = DateTime.Now
+    };
+
+    var coachGautam = new Coach()
+    {
+        Name = "Gautam Gambhir",
+        CreatedDate = DateTime.Now
+    };
+
+    var CoachesToBeAdded = new List<Coach> { coachGary, coachGautam };
+
+    Console.WriteLine(context.ChangeTracker.DebugView.LongView);
+    await context.Coaches.AddRangeAsync(CoachesToBeAdded);
+    await context.SaveChangesAsync();
+    Console.WriteLine(context.ChangeTracker.DebugView.LongView);
+}
+
+async Task InsertARecord()
+{
+    var coachDhoni = new Coach()
+    {
+        Name = "MS Dhoni",
+        CreatedDate = DateTime.Now
+    };
+
+    await context.Coaches.AddAsync(coachDhoni);
+    
+    await context.SaveChangesAsync();
+
+    Console.WriteLine($"Dhoni added at: {coachDhoni.Id}");
+}
 
 async Task SelectAndProjections()
 {
