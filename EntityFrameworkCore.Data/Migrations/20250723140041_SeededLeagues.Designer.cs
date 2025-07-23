@@ -3,6 +3,7 @@ using System;
 using EntityFrameworkCore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntityFrameworkCore.Data.Migrations
 {
     [DbContext(typeof(FootballLeagueDbContext))]
-    partial class FootballLeagueDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250723140041_SeededLeagues")]
+    partial class SeededLeagues
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.17");
@@ -38,9 +41,6 @@ namespace EntityFrameworkCore.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<int?>("TeamId")
-                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -76,21 +76,21 @@ namespace EntityFrameworkCore.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2025, 7, 23, 14, 43, 36, 614, DateTimeKind.Utc).AddTicks(7662),
+                            CreatedDate = new DateTime(2025, 7, 23, 14, 0, 40, 824, DateTimeKind.Utc).AddTicks(7277),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Indian Premier League"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2025, 7, 23, 14, 43, 36, 614, DateTimeKind.Utc).AddTicks(7666),
+                            CreatedDate = new DateTime(2025, 7, 23, 14, 0, 40, 824, DateTimeKind.Utc).AddTicks(7280),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Big Bash League"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2025, 7, 23, 14, 43, 36, 614, DateTimeKind.Utc).AddTicks(7667),
+                            CreatedDate = new DateTime(2025, 7, 23, 14, 0, 40, 824, DateTimeKind.Utc).AddTicks(7281),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "World Cup"
                         });
@@ -132,7 +132,7 @@ namespace EntityFrameworkCore.Data.Migrations
                         {
                             Id = 1,
                             CoachId = 0,
-                            CreatedDate = new DateTime(2025, 7, 23, 14, 43, 36, 614, DateTimeKind.Utc).AddTicks(9751),
+                            CreatedDate = new DateTime(2025, 7, 23, 14, 0, 40, 824, DateTimeKind.Utc).AddTicks(8632),
                             LeagueId = 0,
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "India"
@@ -141,7 +141,7 @@ namespace EntityFrameworkCore.Data.Migrations
                         {
                             Id = 2,
                             CoachId = 0,
-                            CreatedDate = new DateTime(2025, 7, 23, 14, 43, 36, 614, DateTimeKind.Utc).AddTicks(9755),
+                            CreatedDate = new DateTime(2025, 7, 23, 14, 0, 40, 824, DateTimeKind.Utc).AddTicks(8634),
                             LeagueId = 0,
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Portugal"
@@ -150,7 +150,7 @@ namespace EntityFrameworkCore.Data.Migrations
                         {
                             Id = 3,
                             CoachId = 0,
-                            CreatedDate = new DateTime(2025, 7, 23, 14, 43, 36, 614, DateTimeKind.Utc).AddTicks(9756),
+                            CreatedDate = new DateTime(2025, 7, 23, 14, 0, 40, 824, DateTimeKind.Utc).AddTicks(8635),
                             LeagueId = 0,
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Brazil"

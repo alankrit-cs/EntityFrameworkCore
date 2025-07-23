@@ -1,6 +1,7 @@
 ﻿using EntityFrameworkCore.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Reflection;
 
 namespace EntityFrameworkCore.Data
 {
@@ -28,26 +29,7 @@ namespace EntityFrameworkCore.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Team>().HasData(
-                new Team
-                {
-                    TeamId = 1,
-                    Name = "India",
-                    CreatedDate = DateTime.UtcNow
-                },
-                new Team
-                {
-                    TeamId = 2,
-                    Name = "Protugal",
-                    CreatedDate = DateTime.UtcNow
-                },
-                new Team
-                {
-                    TeamId = 3,
-                    Name = "Brazil",
-                    CreatedDate = DateTime.UtcNow
-                }
-            );
-        }
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+		}
     }
 }

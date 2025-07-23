@@ -3,19 +3,22 @@ using EntityFrameworkCore.Domain;
 using Microsoft.EntityFrameworkCore;
 
 using var context = new FootballLeagueDbContext();
+await context.Database.MigrateAsync();
 
-GetAllTeams();
-QuerySingleRecords();
-FilterMultipleRecords();
-SearchWithWildCard();
-AggregateFunctions();
-GroupByItems();
-OrderByItems();
-SelectAndProjections();
-InsertARecord();
-InsertBulkRecords();
-UpdateRecord();
-DeleteRecord();
+//GetAllTeams();
+//QuerySingleRecords();
+//FilterMultipleRecords();
+//SearchWithWildCard();
+//AggregateFunctions();
+//GroupByItems();
+//OrderByItems();
+//SelectAndProjections();
+//InsertARecord();
+//InsertBulkRecords();
+//UpdateRecord();
+//DeleteRecord();
+
+Console.WriteLine(context.DbPath);
 
 async Task DeleteRecord()
 {
@@ -130,16 +133,16 @@ async Task AggregateFunctions()
     var countContainsL = await context.Teams.CountAsync(q => q.Name.Contains("l"));
     Console.WriteLine(countContainsL);
 
-    var min = await context.Teams.MinAsync(q => q.TeamId);
+    var min = await context.Teams.MinAsync(q => q.Id);
     Console.WriteLine(min);
 
-    var max = await context.Teams.MaxAsync(q => q.TeamId);
+    var max = await context.Teams.MaxAsync(q => q.Id);
     Console.WriteLine(max);
 
-    var avg = await context.Teams.AverageAsync(q => q.TeamId);
+    var avg = await context.Teams.AverageAsync(q => q.Id);
     Console.WriteLine(avg);
 
-    var sum = await context.Teams.SumAsync(q => q.TeamId);
+    var sum = await context.Teams.SumAsync(q => q.Id);
     Console.WriteLine(sum);
 }
 
@@ -158,21 +161,21 @@ void QuerySingleRecords()
     var teamFirst = context.Teams.First();
     Console.WriteLine(teamFirst.Name);
 
-    var teamSecond = context.Teams.First(q => q.TeamId == 2);
+    var teamSecond = context.Teams.First(q => q.Id == 2);
     Console.WriteLine(teamSecond.Name);
 
-    var teamThird = context.Teams.FirstOrDefault(q => q.TeamId == 8);
+    var teamThird = context.Teams.FirstOrDefault(q => q.Id == 8);
 
     var teamFourth = context.Teams.Find(3);
     Console.WriteLine(teamFourth.Name);
 
     var teamFifth = context.Teams.Single(q => q.Name == "India");
-    Console.WriteLine(teamFifth.TeamId);
+    Console.WriteLine(teamFifth.Id);
 }
 
 async Task FilterMultipleRecords()
 {
-    var teams = await context.Teams.Where(q => q.TeamId < 3).ToListAsync();
+    var teams = await context.Teams.Where(q => q.Id < 3).ToListAsync();
     foreach (var team in teams)
     {
         Console.WriteLine(team.Name);
